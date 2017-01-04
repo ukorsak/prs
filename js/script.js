@@ -33,6 +33,8 @@ pickScissors.addEventListener('click', function() { playerPick('scissors','noży
 function setGameElements() {
   	switch(gameState) {
     	case 'started':
+            playerPointsElem.style.background = '#777';
+            computerPointsElem.style.background = '#777';
         	newGameElem.style.display = 'none';
         	pickElem.style.display = 'block';
         	resultsElem.style.display = 'block';
@@ -95,6 +97,8 @@ function checkRoundWinner(playerPick, computerPick) {
 
     if (playerPick == computerPick) {
     	winnerIs = 'noone'; // remis
+        playerPointsElem.style.background = '#777';
+        computerPointsElem.style.background = '#777';
     } 
     else if (
         (computerPick == 'rock' &&  playerPick == 'scissors') ||
@@ -107,10 +111,14 @@ function checkRoundWinner(playerPick, computerPick) {
     if (winnerIs == 'player') {
         playerResultElem.innerHTML = "Wygrana!";
         player.score++;
+        playerPointsElem.style.background = '#00FF00';
+        computerPointsElem.style.background = '#777';
     } 
     else if (winnerIs == 'computer') {
         computerResultElem.innerHTML = "Wygrana!";
         computer.score++;
+        playerPointsElem.style.background = '#777';
+        computerPointsElem.style.background = '#00FF00';
     }
 }
 
@@ -122,7 +130,7 @@ function setGamePoints() {
 function ifWon(){
 	if (player.score == 10) {
 		gameState = "ended";
-		playerPointsElem.style.background = '#00ff00';
+		playerPointsElem.style.background = '#0000FF';
 		computerPointsElem.style.background = '#777';
 		alert('Wygrał ' + player.name);
 		setGameElements();
@@ -130,7 +138,7 @@ function ifWon(){
 	else if (computer.score == 10) {
 		gameState = "ended";
 		playerPointsElem.style.background = '#777';
-		computerPointsElem.style.background = '#00ff00';
+		computerPointsElem.style.background = '#0000FF';
 		alert('Wygrał komputer');
 		setGameElements();
 	}
